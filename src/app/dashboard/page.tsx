@@ -155,8 +155,8 @@ export default function Dashboard() {
           </div>
         </Box>
         <Box
-          title="MÉDIA SEMANAL: R$ Arrecadado x Nº Viagens x Hrs Trabalhadas"
           cols={9}
+          title="MÉDIA SEMANAL: R$ Arrecadado x Nº Viagens x Hrs Trabalhadas"
         >
           <GraphWeek data={arrecadados_viagens_horas} />
         </Box>

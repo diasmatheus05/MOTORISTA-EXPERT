@@ -1,4 +1,5 @@
 import { DayGradientColors } from "@/types";
+import { cookies } from "next/headers";
 import { DashboardComponent } from "./dashboard";
 
 const viagens_semana_gradient: DayGradientColors[] = [
@@ -125,6 +126,9 @@ const arrecadados_viagens_horas = [
 ];
 
 export default async function Dashboard() {
+  const token = cookies().get("token")?.value;
+  console.log(token);
+
   const data = await fetch("https://motorista-expert.vercel.app/api/payment", {
     cache: "no-store",
   });

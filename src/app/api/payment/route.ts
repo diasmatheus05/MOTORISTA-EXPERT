@@ -34,7 +34,7 @@ interface PaymentResponse {
 
 export async function GET(request: Request) {
   const token = cookies().get("token")?.value;
-
+  console.log(token);
   try {
     const { data } = await axios.get<PaymentResponse>(
       "https://api.uber.com/v1/partners/payments",

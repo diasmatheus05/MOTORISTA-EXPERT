@@ -125,7 +125,9 @@ const arrecadados_viagens_horas = [
 ];
 
 export default async function Dashboard() {
-  const data = await fetch("/api/payment", { cache: "no-store" });
+  const data = await fetch("https://motorista-expert.vercel.app/api/payment", {
+    cache: "no-store",
+  });
   console.log(data);
 
   return (

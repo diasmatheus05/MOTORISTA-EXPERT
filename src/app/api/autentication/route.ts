@@ -1,5 +1,5 @@
 import axios from "axios";
-import FormData from "form-data";
+// import FormData from "form-data";
 import { NextResponse } from "next/server";
 
 interface ExchangeResponse {
@@ -18,15 +18,24 @@ export async function GET(request: Request) {
   form.append("client_secret", "-qPAL3618C32LLGX-_aUUlNav2sS9Zpmqen6zXy8");
   form.append("client_id", "JlpY-80AUWOOySeCC4QoGv4iRFQ-hOVy");
   form.append("grant_type", "authorization_code");
-  form.append("redirect_uri", "http://localhost:3000/dashboard");
+  // form.append("redirect_uri", "https://localhost:3000/api/autentication");
+  form.append(
+    "redirect_uri",
+    "https://motorista-expert.vercel.app/api/autentication"
+  );
   form.append("code", code);
 
-  const response = await axios.post<ExchangeResponse>(
+  const { data } = await axios.post<ExchangeResponse>(
     "https://login.uber.com/oauth/v2/token",
     form
   );
-  // @ts-ignore
-  // cookies().set("me-token", response.data.access_token);
 
-  return NextResponse.json({ data: response.data });
+  const { access_token, expires_in } = data;
+  const redirectURL = new URL("/dashboard", request.url);
+
+  return NextResponse.redirect(redirectURL, {
+    headers: {
+      "Set-Cookie": `token=${access_token}; Path=/; max-age=${expires_in};`,
+    },
+  });
 }

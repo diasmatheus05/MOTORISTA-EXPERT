@@ -1,5 +1,6 @@
 // "use client";
 import { DayGradientColors } from "@/types";
+import { cookies } from "next/headers";
 import { DashboardComponent } from "./dashboard";
 
 const viagens_semana_gradient: DayGradientColors[] = [
@@ -130,18 +131,22 @@ export default function Dashboard({
 }: {
   searchParams: { code?: string };
 }) {
-  const { code } = searchParams;
+  const token = cookies().get("token")?.value;
+  console.log(token);
+  // const { code } = searchParams;
 
-  // const login = useCallback(async () => {
-  //   if (code) {
-  //     await exchangeCode(code);
-  //     getTrips();
-  //   }
-  // }, [code]);
+  // async function login() {
+  //   const { data } = await axios.post("https://localhost:3333/register", {
+  //     code,
+  //   });
+  //   console.log(data);
+  // }
 
   // useEffect(() => {
-  //   // login();
-  // }, [login]);
+  //   if (code) {
+  //     login();
+  //   }
+  // }, [code]);
 
   return (
     <DashboardComponent

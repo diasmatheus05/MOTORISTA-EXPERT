@@ -1,5 +1,7 @@
+"use client";
 import { DayGradientColors } from "@/types";
 import axios from "axios";
+import { useEffect } from "react";
 import { DashboardComponent } from "./dashboard";
 
 const viagens_semana_gradient: DayGradientColors[] = [
@@ -126,8 +128,14 @@ const arrecadados_viagens_horas = [
 ];
 
 export default async function Dashboard() {
-  const data = await axios.get("/api/payment");
-  console.log(data);
+  async function getData() {
+    const data = await axios.get("/api/payment");
+    console.log(data);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <DashboardComponent

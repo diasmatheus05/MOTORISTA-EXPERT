@@ -7,8 +7,6 @@ import UberLogo from "public/Uber.png";
 const CLIENT_ID = "JlpY-80AUWOOySeCC4QoGv4iRFQ-hOVy";
 const RESPONSE_TYPE = "code";
 const SCOPE = "partner.accounts,partner.payments,partner.trips";
-// const REDIRECT_URI = "https://localhost:3000/dashboard";
-// const REDIRECT_URI = "https://motorista-expert.vercel.app/dashboard";
 const REDIRECT_URI = "https://motorista-expert.vercel.app/api/autentication";
 
 export default function Home() {

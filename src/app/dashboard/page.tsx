@@ -1,6 +1,5 @@
-// "use client";
 import { DayGradientColors } from "@/types";
-import { cookies } from "next/headers";
+import axios from "axios";
 import { DashboardComponent } from "./dashboard";
 
 const viagens_semana_gradient: DayGradientColors[] = [
@@ -126,27 +125,9 @@ const arrecadados_viagens_horas = [
   { day: 7, arrecadado: 140, viagens: 20, horas: 10 },
 ];
 
-export default function Dashboard({
-  searchParams,
-}: {
-  searchParams: { code?: string };
-}) {
-  const token = cookies().get("token")?.value;
-  console.log(token);
-  // const { code } = searchParams;
-
-  // async function login() {
-  //   const { data } = await axios.post("https://localhost:3333/register", {
-  //     code,
-  //   });
-  //   console.log(data);
-  // }
-
-  // useEffect(() => {
-  //   if (code) {
-  //     login();
-  //   }
-  // }, [code]);
+export default async function Dashboard() {
+  const data = await axios.get("/api/payment");
+  console.log(data);
 
   return (
     <DashboardComponent

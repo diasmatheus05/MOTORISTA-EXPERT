@@ -127,11 +127,13 @@ const arrecadados_viagens_horas = [
 
 export default async function Dashboard() {
   const token = cookies().get("token")?.value;
-  console.log(token);
 
-  const data = await fetch("https://motorista-expert.vercel.app/api/payment", {
-    cache: "no-store",
-  });
+  const data = await fetch(
+    "https://motorista-expert.vercel.app/api/payment?token=" + token,
+    {
+      cache: "no-store",
+    }
+  );
   console.log(data);
 
   return (

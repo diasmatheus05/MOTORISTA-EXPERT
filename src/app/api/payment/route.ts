@@ -35,14 +35,18 @@ interface PaymentResponse {
 export async function GET(request: Request) {
   const token = cookies().get("token")?.value;
 
-  const { data } = await axios.get<PaymentResponse>(
-    "https://api.uber.com/v1/partners/payments",
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-
-  return NextResponse.json({ data });
+  try {
+    const { data } = await axios.get<PaymentResponse>(
+      "https://api.uber.com/v1/partners/payments",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return NextResponse.json({ data });
+  } catch (err) {
+    console.error(err);
+    return NextResponse.error();
+  }
 }

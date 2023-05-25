@@ -1,5 +1,4 @@
 import { DayGradientColors } from "@/types";
-import axios from "axios";
 import { DashboardComponent } from "./dashboard";
 
 const viagens_semana_gradient: DayGradientColors[] = [
@@ -125,7 +124,10 @@ const arrecadados_viagens_horas = [
   { day: 7, arrecadado: 140, viagens: 20, horas: 10 },
 ];
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  const data = await fetch("/api/payment", { cache: "no-store" });
+  console.log(data);
+
   return (
     <DashboardComponent
       monthData={arrecadados_viagens}
@@ -133,11 +135,4 @@ export default function Dashboard() {
       weekGradient={viagens_semana_gradient}
     />
   );
-}
-
-export async function getServerSideProps() {
-  const data = await axios.get("/api/payment");
-  console.log(data);
-
-  return { props: { data } };
 }

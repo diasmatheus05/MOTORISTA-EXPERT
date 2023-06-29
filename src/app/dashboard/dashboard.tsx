@@ -7,10 +7,20 @@ export function DashboardComponent({
   weekData,
   monthData,
   weekGradient,
+  valorMedioHora,
+  valorMedioKm,
+  distanciaMediaHora,
+  valorMedioViagem,
+  valorTotal,
 }: {
   weekData: WeekData[];
   monthData: MonthData[];
   weekGradient: DayGradientColors[];
+  valorMedioHora: number;
+  valorMedioKm: number;
+  distanciaMediaHora: number;
+  valorTotal: number;
+  valorMedioViagem: number;
 }) {
   return (
     <div className="p-6">
@@ -21,15 +31,44 @@ export function DashboardComponent({
       <div className="grid grid-cols-12 gap-6">
         <Box cols={9}>
           <div className="flex items-center justify-around gap-4">
-            <Info title="Valor médio da Hora" info="R$ 10,00" />
-            <Info title="Valor médio da Km" info="R$ 10,00" />
-            <Info title="Distância média por Hora" info="50 Km" />
+            <Info
+              title="Valor médio da Hora"
+              info={valorMedioHora.toLocaleString("pt-BR", {
+                currency: "BRL",
+                style: "currency",
+              })}
+            />
+            <Info
+              title="Valor médio do Km"
+              info={valorMedioKm.toLocaleString("pt-BR", {
+                currency: "BRL",
+                style: "currency",
+              })}
+            />
+            <Info
+              title="Distância média por Hora"
+              info={distanciaMediaHora.toFixed(1) + " Km"}
+            />
           </div>
         </Box>
         <Box cols={3} rows={2}>
           <div className="h-full flex flex-col items-center justify-around gap-4">
-            <Info center title="Ganhos Totais" info="R$ 10.000,00" />
-            <Info center title="Ganho médio por viagem" info="R$ 10,00" />
+            <Info
+              center
+              title="Ganhos Totais"
+              info={valorTotal.toLocaleString("pt-BR", {
+                currency: "BRL",
+                style: "currency",
+              })}
+            />
+            <Info
+              center
+              title="Ganho médio por viagem"
+              info={valorMedioViagem.toLocaleString("pt-BR", {
+                currency: "BRL",
+                style: "currency",
+              })}
+            />
             <Info center title="Total de gorjetas" info="R$ 1.000,00" />
             <Info
               center

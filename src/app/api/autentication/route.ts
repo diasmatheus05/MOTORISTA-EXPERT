@@ -1,5 +1,4 @@
 import axios from "axios";
-// import FormData from "form-data";
 import { NextResponse } from "next/server";
 
 interface ExchangeResponse {
@@ -18,11 +17,11 @@ export async function GET(request: Request) {
   form.append("client_secret", "-qPAL3618C32LLGX-_aUUlNav2sS9Zpmqen6zXy8");
   form.append("client_id", "JlpY-80AUWOOySeCC4QoGv4iRFQ-hOVy");
   form.append("grant_type", "authorization_code");
-  // form.append("redirect_uri", "https://localhost:3000/api/autentication");
-  form.append(
-    "redirect_uri",
-    "https://motorista-expert.vercel.app/api/autentication"
-  );
+  form.append("redirect_uri", "https://localhost:3000/api/autentication");
+  // form.append(
+  //   "redirect_uri",
+  //   "https://motorista-expert.vercel.app/api/autentication"
+  // );
   form.append("code", code);
 
   const { data } = await axios.post<ExchangeResponse>(

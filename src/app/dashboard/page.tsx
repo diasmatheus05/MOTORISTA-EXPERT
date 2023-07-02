@@ -148,8 +148,8 @@ const gradientColors = (taxa: number) => {
 
 const fecthData = async () => {
   const data = await fetch(
-    // "https://motorista-expert.vercel.app/api/dashboard",
-    "http://localhost:3000/api/dashboard",
+    "https://motorista-expert.vercel.app/api/dashboard",
+    // "http://localhost:3000/api/dashboard",
     { cache: "no-store" }
   );
   const { corridas } = (await data.json()) as {
